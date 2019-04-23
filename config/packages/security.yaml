@@ -1,0 +1,55 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        chain_provider:
+            chain:
+               providers: [db_username, db_email]
+        db_username:
+            entity:
+                class: App\Entity\User
+                property: username
+        db_email:
+            entity:
+                class: App\Entity\User
+                property: email
+        # from_database:
+        #     entity:
+        #         class: App\Entity\User
+        #         property: email
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+            logout:
+                path: /logout
+                target: home
+            provider: chain_provider
+            # Tu peux mettre autant de firewall et de provider que tu veux pour sécuriser des parties différentes de ton app
+
+            # activate different ways to authenticate
+
+            # http_basic: true
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            form_login:
+                login_path: connexion
+                check_path: connexion
+            # https://symfony.com/doc/current/security/form_login_setup.html
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/api, roles: ROLE_ADMIN }
+        - { path: ^/profile, roles: ROLE_USER }
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+            cost: 12
+    # Un ADMIN hérite bien des droits d'un USER c'est bien comme ça qu il faut le lire
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+

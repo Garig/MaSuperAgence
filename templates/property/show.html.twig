@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+{% block title property.title %}
+
+{% block body %}
+
+<div class="jumbotron">
+    <div class="container">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        
+        {% if not form.vars.valid %}
+            <div class="alert alert-danger">
+                Il y a eu une erreur lors de l'envoi de l'email
+            </div>
+        {% endif %}
+        
+        <div class="row">
+            <div class="col-md-8">
+                {# <div data-slider> #}
+                <div>
+                    {% if property.pictures is empty %}
+                        <a class="single_image" href="{{ "images/empty.jpg" | imagine_filter('medium') }}">
+                        <img src="{{ "images/empty.jpg" | imagine_filter('medium') }}" class="card-img-top" style="width:100%;height:auto" alt="">
+                        </a>  
+                    {% else %}
+                    {# {% for picture in property.pictures %} #}
+                        <a class="single_image" href="{{ vich_uploader_asset(property.picture, 'imageFile') | imagine_filter('medium') }}">
+                        <img src="{{ vich_uploader_asset(property.picture, 'imageFile') | imagine_filter('medium') }}" class="card-img-top main" style="width:100%;height:auto" alt="">
+                        </a>
+                    {# {% endfor %} #}
+                    {% endif %}
+                </div>
+                {# </div> #}
+                <div class="row">
+                    {% if property.pictures | length > 1 %}
+                        {% for picture in property.pictures %}
+                            <div class="col-xs-3">
+                                <a href="#"><img src="{{ vich_uploader_asset(picture, 'imageFile') | imagine_filter('medium') }}" width="123" alt="" class="thumb" style="margin:13px 0px 0px 15px"></a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h1>{{property.title}}</h1>
+                <h2>{{property.rooms}} pièces - {{property.surface}} m<sup>2</sup></h2>
+                <h2>{{property.city}} ({{property.postalCode}})</h2>
+                <div class="text-primary" style="font-size:3rem;font-weight:bold;">{{property.getFormattedPrice()}} €</div>       
+                <a href="#" id="contactButton" class="btn btn-primary"{% if form.vars.submitted %} style="display:none" {% endif %}>Contacter l'agence</a>
+                <div id="contactForm" class="mt-4"{% if not form.vars.submitted %} style="display:none" {% endif %} >
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="col">{{ form_row(form.firstname) }}</div>
+                    <div class="col">{{ form_row(form.lastname) }}</div>
+                </div>
+                <div class="row">
+                    <div class="col">{{ form_row(form.phone) }}</div>
+                    <div class="col">{{ form_row(form.email) }}</div>
+                </div>
+                {{ form_rest(form) }}
+                <div class="g-recaptcha" data-sitekey="6LdkbZ0UAAAAAL48iOlThGAp9MUuzTiEZVqk8dKu"></div>
+                <div class="">
+                    <button class="btn btn-primary">Envoyer</button>
+                </div>
+                {{ form_end(form) }}
+                </div>       
+            </div>
+        </div>        
+    </div>
+</div>
+<div class="container mt-4 mb-4">
+    <p>
+        {{property.description | raw | nl2br }}
+    </p>
+
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Caractéristiques</h2>
+            <table class="table table-striped">
+                <tr>
+                    <td>Surface habitable</td>
+                    <td>{{property.surface}} m<sup>2</sup></td>
+                </tr>
+                <tr>
+                    <td>Pièces</td>
+                    <td>{{property.rooms}}</td>
+                </tr>
+                <tr>
+                    <td>Chambres</td>
+                    <td>{{property.bedrooms}}</td>
+                </tr>
+                <tr>
+                    <td>Etage</td>
+                    <td>{{property.floor}}</td>
+                </tr>
+                <tr>
+                    <td>Chauffage</td>
+                    <td>{{property.heatType}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <h2>Spécificités</h2>
+            <ul class="list-group">
+            {% for option in property.options %}
+                <li class="list-group-item">{{ option.name }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div id="map" class="mt-3" style="width: 100%; height: 400px" data-lat="{{ property.lat }}" data-lng="{{ property.lng }}"></div>   
+</div>
+{% endblock %}
+
+{% block javascripts %}
+  <script src="https://www.google.com/recaptcha/api.js?render=6LdkbZ0UAAAAAL48iOlThGAp9MUuzTiEZVqk8dKu"></script>
+  <script>
+  grecaptcha.ready(function() {
+      grecaptcha.execute('6LdkbZ0UAAAAAL48iOlThGAp9MUuzTiEZVqk8dKu', {action: 'homepage'}).then(function(token) {
+         ...
+      });
+  });
+  </script>
+{% endblock %}

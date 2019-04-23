@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Agence immobilière | Accueil' %}
+
+{% block body %}
+<div class="jumbotron text-center">
+        <h1>Agence immobilière</h1>
+        <p>Bienvenue sur le site de notre agence immobilière. Nous vous proposons de nombreux biens à vendre en France.</p>
+</div>
+<div class="container">
+        <h2>Les derniers biens</h2>
+        <div class="row">
+                {% for property in properties %}
+                        {% include 'property/_property.html.twig' %}
+                {% endfor %}
+        </div>
+
+        <div id="root"></div>
+</div>
+
+{% endblock %}

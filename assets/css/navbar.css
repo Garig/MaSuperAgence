@@ -1,0 +1,23 @@
+.navbar-custom {
+    background-color: #0c326d;
+    color:lightblue;
+}
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text .navbar-text:hover {
+    color: lightblue;
+    padding: 0.8rem 1rem;
+    background-color: #0c326d;
+}
+/* change the link color and add padding for height */
+.navbar-custom .navbar-nav .nav-link {
+    color: lightblue;
+    padding: 1rem 1rem;
+    background-color: #0c326d;
+}
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link.active,
+.navbar-custom .nav-item:hover .nav-link .nav-link:hover {
+    color: lightblue;
+    background-color: #0c326d; /* add background-color to active links */
+}

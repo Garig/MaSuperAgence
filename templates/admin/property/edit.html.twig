@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Editer le bien' %}
+
+{% block body %}
+
+<div class="container mt-4 mb-4">
+    <h1>Editer le bien</h1>
+    {# {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %} #}
+    {{ include ('admin/property/_form.html.twig', {button: 'Editer' }) }}
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

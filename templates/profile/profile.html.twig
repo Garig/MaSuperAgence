@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Mon profil' %}
+
+{% block body %}
+
+<div class="container mt-3">
+
+    {% for message in app.flashes('success') %}
+    <div class="container mt-4">
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    </div>
+    {% endfor %}
+
+    <h1>Mon profil</h1>
+
+    {% if app.user %}
+    <p>Bonjour {{ app.user.username }}</p>
+    <p>Votre email est {{ app.user.email }}</p>
+    <p><a href="{{ path('edit_password') }}" class="btn btn-info">Modifier mont mot de passe</a></p>
+    <p><a href="{{ path('edit_infos') }}" class="btn btn-warning">Editer mes infos</a></p>
+    {# <p><a href="{{ path('profile.favoris') }}" class="btn btn-success">Mes biens favoris</a></p> #}
+    <form method="post" action="{{ path('delete_profile', {id:user.id}) }}" onsubmit="return confirm('Etes-vous sur ?')">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+        <button class="btn btn-danger">Supprimer mon compte</button>
+    </form>
+    {% endif %}
+
+    <div id="root"></div>
+
+</div>
+
+{% endblock %}

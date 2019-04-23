@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Mes biens favoris' %}
+
+{% block body %}
+<div class="container mt-4">
+        <h1>Mes biens favoris</h1>
+        <div class="row">
+                {% for property in properties %}
+                        {% include 'property/_property.html.twig' %}
+                {% endfor %}
+        </div>
+
+        <div id="root"></div>
+</div>
+
+{% endblock %}

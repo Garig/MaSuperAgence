@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+    {{ form_row(form.username, {'label': 'Nom d\'utilisateur', 'attr': {'placeholder': 'Nom d\'utilisateur'}}) }}
+    {{ form_row(form.email, {'label': 'Email', 'attr': {'placeholder': 'Email'}}) }}
+    {{ form_row(form.password, {'label': 'Mot de passe', 'attr': {'placeholder': 'Entrez votre mot de passe'}}) }}
+    {{ form_row(form.confirm_password, {'label': 'Vérification', 'attr': {'placeholder': 'Retaper votre mot de passe'}}) }}
+
+    <button type="submit" class="btn btn-primary">{{ button|default('Register') }}</button>
+{{ form_end(form) }}
+

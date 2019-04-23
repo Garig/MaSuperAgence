@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer mes infos{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    {% for message in app.flashes('danger') %}
+    <div class="container mt-4">
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    </div>
+    {% endfor %}
+
+<h1>Editer mes infos</h1>
+    <form method="post" action="{{ path('edit_infos') }}">
+        <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" name="username" id="username" class="form-control" placeholder="Nom d'utilisateur" value="{{ user.username }}" required>
+        </div>
+        <div class="form-group">
+                <label for="new_password">Email</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Email" value="{{ user.email }}" required>
+        </div>
+        <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe" required>
+        </div>
+
+        <button class="btn btn-primary" type="submit">
+            Modifier mes infos
+        </button>
+    </form>
+<a href="{{ path('profile.index') }}">retour</a>
+</div>
+{% endblock %}
+

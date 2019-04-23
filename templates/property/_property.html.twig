@@ -1,0 +1,27 @@
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+    <div class="card mb-4">
+    <a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}">
+    {% if property.picture %}
+        <img src="{{ vich_uploader_asset(property.picture, 'imageFile') | imagine_filter('thumb') }}" class="card-img-top" style="width:100%;height:auto" alt="">
+    {% else %}
+        <img src="{{ "images/empty.jpg" | imagine_filter('thumb') }}" class="card-img-top" style="width:100%;height:auto" alt="">
+    {% endif %}
+    </a>
+        <div class="card-body"><!--.card-body pour le padding -->
+            <h5 class="card-title">
+                <a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}">{{ property.title }}</a>
+            </h5>
+            <p class="card-text">{{ property.surface }}m<sup>2</sup> - {{ property.city }} ({{ property.postalCode }})</p>
+            <div class="text-primary" style="font-weight:bold;font-size:2rem;">{{ property.getFormattedPrice }} €</div>
+            <a href="{{ path('property_like', {'id': property.id}) }}" class="btn btn-link js-like float-right">
+                {% if app.user and property.isLikedByUser(app.user) %}
+                    <i class="fas fa-thumbs-up"></i>
+                {% else %}
+                    <i class="far fa-thumbs-up"></i>
+                {% endif %}
+                <span class="js-likes">{{ property.likes | length }}</span>
+                <span class="js-label">J'aime</span>
+            </a>
+        </div>
+    </div>
+</div>
