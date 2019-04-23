@@ -3,7 +3,6 @@
 /.env.te
 /.env.local
 /.env.local.php
-/.env.*.local
 /.project
 /.buildpath
 /public/bundles/
