@@ -163,10 +163,10 @@ class Property
 
     public function __construct()
     {
-        $this->options = new ArrayCollection();
+        $this->options = new Collection();
         $this->created_at = new \Datetime();
-        $this->pictures = new ArrayCollection();
-        $this->likes = new ArrayCollection();
+        $this->pictures = new Collection();
+        $this->likes = new Collection();
     }
     
 

@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Table(name="`user`")
  * @UniqueEntity(fields="email", message="Email déja pris")
  * @UniqueEntity(fields="username", message="Username déja pris")
  */
@@ -61,11 +62,22 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="array")
      */
     private $roles = [];
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
+    
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $last_login;
     
         /**
      * @var string le token qui servira lors de l'oubli de mot de passe
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+
     protected $resetToken;
 
     /**
@@ -77,6 +89,7 @@ class User implements UserInterface, \Serializable
     {
         $this->roles=array('ROLE_USER');
         $this->likes = new ArrayCollection();
+        $this->created_at = new \Datetime();
     }
 
     public function getId(): ?int
@@ -169,6 +182,30 @@ class User implements UserInterface, \Serializable
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getLastLogin(): ?\DateTimeInterface
+    {
+        return $this->last_login;
+    }
+
+    public function setLastLogin(\DateTimeInterface $last_login): self
+    {
+        $this->last_login = $last_login;
 
         return $this;
     }
