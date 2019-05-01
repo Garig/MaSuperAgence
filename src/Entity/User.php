@@ -69,15 +69,14 @@ class User implements UserInterface, \Serializable
     private $created_at;
     
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $last_login;
     
-        /**
+    /**
      * @var string le token qui servira lors de l'oubli de mot de passe
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-
     protected $resetToken;
 
     /**
