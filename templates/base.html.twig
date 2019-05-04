@@ -10,13 +10,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
-        <link rel="stylesheet" href="{{ asset('/build/app.9f1b5724.css') }}"></link>
-        {# <link rel="stylesheet" href="{{ asset('/build/app.css') }}"></link> #}
+        {# <link rel="stylesheet" href="{{ asset('/build/app.9f1b5724.css') }}"></link> #}
+        <link rel="stylesheet" href="{{ asset('/build/app.css') }}"></link>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <div class="container gmail stage">
+      <div class="container ok gmail">
     {# <nav class="navbar navbar-expand-lg navbar-custom"> #}
   <a class="navbar-brand" href="{{ path('home') }}">Mon Agence</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,11 +104,12 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
         <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<<<<<<< Updated upstream
+
         <script type="text/javascript" src="{{ asset('/build/app.30219a5f.js') }}"></script>
         {# <script type="text/javascript" src="{{ asset('/build/app.js') }}"></script> #}
         <script type="text/javascript" src="{{ asset('/build/runtime.1ba6bf05.js') }}"></script>
         {# <script type="text/javascript" src="{{ asset('/build/runtime.js') }}"></script> #}
+
         {# <script type="text/javascript" src="{{ asset('build/vendors~app.js') }}"></script> #}
         {% block javascripts %}{% endblock %}
         {# {% block javascripts %}
