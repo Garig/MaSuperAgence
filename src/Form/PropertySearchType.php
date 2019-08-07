@@ -23,10 +23,10 @@ class PropertySearchType extends AbstractType
         $builder
             ->add('minSurface', IntegerType::class, [
                 'required' => false,
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Surface minimale'
-                ]
+                'label' => false
+                // 'attr' => [
+                //     'placeholder' => 'Surface minimale'
+                // ]
             ])
             ->add('maxPrice', IntegerType::class, [
                 'required' => false,
@@ -71,10 +71,10 @@ class PropertySearchType extends AbstractType
             ->add('lat', HiddenType::class)
             ->add('lng', HiddenType::class);
             // ->add('submit', SubmitType::class, [
-            //     'label' => 'Rechercher',
+            //     'label' => 'form.button.search',
             //     'attr' => [
-            //         'class' => 'btn btn-info',
-            //         'disabled' => true
+            //         'class' => 'btn btn-primary',
+            //         // 'disabled' => true
             //     ]
             // ]);
     }

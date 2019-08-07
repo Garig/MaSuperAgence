@@ -11,14 +11,14 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
         <link rel="stylesheet" href="{{ asset('/build/app.9f1b5724.css') }}"></link>
-        {# <link rel="stylesheet" href="{{ asset('/build/app.css') }}"></link> #}
+        <!-- <link rel="stylesheet" href="{{ asset('/build/app.css') }}"></link> -->
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container gmail stage">
     {# <nav class="navbar navbar-expand-lg navbar-custom"> #}
-  <a class="navbar-brand" href="{{ path('home') }}">Mon Agence</a>
+  <a class="navbar-brand" href="{{ path('home') }}">{{ 'nav.item.brand'|trans }}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -26,7 +26,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item pull-right">
-        <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %}active{% endif %}" href="{{ path('property.index') }}">Acheter</a>
+        <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %}active{% endif %}" href="{{ path('property.index') }}">{{ 'nav.item.buy'|trans }}</a>
       </li>
     </ul>
         {# {% if app.user %} #}
@@ -43,32 +43,44 @@
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item pull-right">
-        <a class="nav-link {% if current_menu is defined and current_menu == 'admin' %}active{% endif %}" href="/admin/user">Gérer les users</a>
+        <a class="nav-link {% if current_menu is defined and current_menu == 'admin' %}active{% endif %}" href="/admin/user">Gérer les utilisateurs</a>
       </li>
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item pull-right">
-        <a class="nav-link {% if current_menu is defined and current_menu == 'admin' %}active{% endif %}" href="{{ path('logout') }}">Se déconnecter</a>
+        <a class="nav-link {% if current_menu is defined and current_menu == 'admin' %}active{% endif %}" href="{{ path('logout') }}">{{ 'nav.item.logout'|trans }}</a>
       </li>
     </ul>
     {% elseif is_granted('IS_AUTHENTICATED_FULLY') %}
     <ul class="navbar-nav">
       <li class="nav-item pull-right">
-        <a class="nav-link {% if current_menu is defined and current_menu == 'admin' %}active{% endif %}" href="{{ path('profile.index') }}">Mon Compte</a>
+        <a class="nav-link {% if current_menu is defined and current_menu == 'admin' %}active{% endif %}" href="{{ path('profile.index') }}">{{ 'nav.item.account'|trans }}</a>
       </li>
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item pull-right">
-        <a class="nav-link {% if current_menu is defined and current_menu == 'admin' %}active{% endif %}" href="{{ path('logout') }}">Se déconnecter</a>
+        <a class="nav-link {% if current_menu is defined and current_menu == 'admin' %}active{% endif %}" href="{{ path('logout') }}">{{ 'nav.item.logout'|trans }}</a>
       </li>
     </ul>
     {% else %}
     <ul class="navbar-nav ml-auto">
       <li class="nav-item pull-right">
-        <a class="nav-link {% if current_menu is defined and current_menu == 'admin' %}active{% endif %}" href="{{ path('inscription') }}">Inscription</a>
+        <a class="nav-link {% if current_menu is defined and current_menu == 'admin' %}active{% endif %}" href="{{ path('inscription') }}">{{ 'nav.item.signup'|trans }}</a>
       </li>
       <li class="nav-item pull-right">
-        <a class="nav-link {% if current_menu is defined and current_menu == 'admin' %}active{% endif %}" href="{{ path('connexion') }}">Connexion</a>
+        <a class="nav-link {% if current_menu is defined and current_menu == 'admin' %}active{% endif %}" href="{{ path('connexion') }}">{{ 'nav.item.signin'|trans }}</a>
+      </li>
+      <li class="nav-item pull-right" style="padding-top:4px">
+        <span>
+            <a href="{{ path('languageFr') }}">
+                <img src="{{ "images/fr.png" | imagine_filter('medium') }}" style="width:20px;height:auto" alt="">
+            </a>
+        </span>
+        <span>
+            <a href="{{ path('languageEn') }}">
+                <img src="{{ "images/en.png" | imagine_filter('medium') }}" style="width:20px;height:auto" alt="">
+            </a>
+        </span>
       </li>
       {# <li class="nav-item pull-right">
         <a class="nav-link {% if current_menu is defined and current_menu == 'admin' %}active{% endif %}" href="{{ path('admin.property.index') }}">Admin</a>
@@ -104,11 +116,10 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
         <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<<<<<<< Updated upstream
-        <script type="text/javascript" src="{{ asset('/build/app.30219a5f.js') }}"></script>
-        {# <script type="text/javascript" src="{{ asset('/build/app.js') }}"></script> #}
-        <script type="text/javascript" src="{{ asset('/build/runtime.1ba6bf05.js') }}"></script>
-        {# <script type="text/javascript" src="{{ asset('/build/runtime.js') }}"></script> #}
+        <!-- <script type="text/javascript" src="{{ asset('/build/app.30219a5f.js') }}"></script> -->
+        <script type="text/javascript" src="{{ asset('/build/app.js') }}"></script>
+        <!-- <script type="text/javascript" src="{{ asset('/build/runtime.1ba6bf05.js') }}"></script> -->
+        <script type="text/javascript" src="{{ asset('/build/runtime.js') }}"></script>
         {# <script type="text/javascript" src="{{ asset('build/vendors~app.js') }}"></script> #}
         {% block javascripts %}{% endblock %}
         {# {% block javascripts %}

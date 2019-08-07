@@ -19,6 +19,8 @@ use Symfony\Component\HttpFoundation\Request;
 //si on avait utilisé le container mais c est pas comme ça qu on declare il faut aller dans services
 // use Knp\Component\Pager\Paginator;
 use ReCaptcha\ReCaptcha;
+use Symfony\Component\Translation\TranslatorInterface;
+
 
 
 class PropertyController extends AbstractController
@@ -34,7 +36,9 @@ class PropertyController extends AbstractController
     }
 
     /**
-     * @Route("/biens", name="property.index")
+     * @Route("/{_locale}/biens", name="property.index")
+     * requirements:
+     *     _locale: fr|en
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
@@ -68,9 +72,11 @@ class PropertyController extends AbstractController
     }
 
     /**
-     * @Route("/biens/{slug}-{id}", name="property.show", requirements={"slug": "[a-z0-9\-]*"})
+     * @Route("/{_locale}/biens/{slug}-{id}", name="property.show", requirements={"slug": "[a-z0-9\-]*", })
+     * requirements:
+     *     _locale: fr|en
      */
-    public function show(Property $property, string $slug, Request $request, \Swift_Mailer $mailer, Environment $renderer, ContactNotification $notification) : Response
+    public function show(Property $property, string $slug, TranslatorInterface $translator, Request $request, \Swift_Mailer $mailer, Environment $renderer, ContactNotification $notification) : Response
     {
         if ($property->getSlug() !== $slug) {
             return $this->redirectToRoute('property.show', [
@@ -94,13 +100,14 @@ class PropertyController extends AbstractController
             ]), 'text/html');
             $mailer->send($message);
 
-            $this->addFlash('success', 'Votre email a bien été envoyé. Nous vous répondrons dans les plus brefs délais');
+            $this->addFlash('success', $translator->trans('email.message.success'));
             return $this->redirectToRoute('property.show', [
                 'id'   => $property->getId(),
                 'slug' => $property->getSlug()
             ]);
             // ici ce sera pas une 301 on fait une redirection suite a un traitement corrct du formulaire
         }
+
 
         if(isset($_POST['g-recaptcha-response'])){
             $recaptcha = new ReCaptcha("6LdkbZ0UAAAAAHerBAiNFmD0MqdNLon2mq-1PBPd");

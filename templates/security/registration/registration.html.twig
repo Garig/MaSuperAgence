@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
+{% trans_default_domain "messages" %}
 
-{% block title 'S\'inscrire' %}
+{% block title %}
+    {{ 'title.registration'|trans }}
+{% endblock title %}
 
 {% block body %}
 
@@ -10,8 +13,9 @@
             {{ error.messageKey | trans(error.messagedata, 'security') }}
         </div>
     {% endif %}
-    <h1>Inscription</h1>
+    <h1>{{ 'form.registration.title'|trans }}</h1>
         
+        {# {{ include ('security/registration/_form.html.twig', {button: "S'inscrire" }) }}  #}
         {{ include ('security/registration/_form.html.twig', {button: "S'inscrire" }) }} 
 
 {% endblock %}

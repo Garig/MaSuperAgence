@@ -1,27 +1,42 @@
 {% extends 'base.html.twig' %}
+{% trans_default_domain "messages" %}
 
-{% block title 'Tous nos biens' %}
+{% block title %}
+    {{ 'title.index'|trans }}
+{% endblock title %}
 
 {% block body %}
 <div class="jumbotron">
         <div class="container">
         {{ form_start(form) }}
         <div class="row align-items-end">
-                <div class="col-md-3"><div class="form-group">{{ form_row(form.minSurface) }}</div></div>
-                <div class="col-md-3"><div class="form-group">{{ form_row(form.maxPrice) }}</div></div>
-                <div class="col-md-3"><div class="form-group">{{ form_row(form.minPiece) }}</div></div>
+                <div class="col-md-3"><div class="form-group">{{ form_row(form.minSurface, { 'attr': {'placeholder': 'form.search.minsurface'|trans } } ) }}</div></div>
+                <div class="col-md-3"><div class="form-group">{{ form_row(form.maxPrice, { 'attr': {'placeholder': 'form.search.maxprice'|trans} } ) }}</div></div>
+                <div class="col-md-3"><div class="form-group">{{ form_row(form.minPiece, { 'attr': {'placeholder': 'form.search.minpiece'|trans} } ) }}</div></div>
                 <div class="col-md-2"><div class="form-group">{{ form_row(form.options) }}</div></div>
         </div>
         <div class="row align-items-end">
-                <div class="col-md-8"><div class="form-group"><input type="text" value="" placeholder="Adresse" id="search_adress" class="form-control"></div></div>
-                <div class="col-md-2"><div class="form-group">{{ form_row(form.distance) }}</div></div>
-                <div class="col-md-2"><div class="form-group"><button class="btn btn-primary">Rechercher</button></div></div>
+                <div class="col-md-8"><div class="form-group"><input type="text" value="" placeholder="{{ 'form.search.address'|trans }}" id="search_adress" class="form-control"></div></div>
+                <div class="col-md-2"><div class="form-group">{{ form_row(form.distance, { 'attr': {'placeholder': "{{ 'form.search.distance'|trans }}"} }) }}</div></div>
+                <div class="col-md-2"><div class="form-group"><button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>{{ 'form.search.search'|trans }}</button></div></div>
         </div>
         {{ form_end(form) }}
         </div>
 </div>
 <div class="container mt-4">
-        <h1>Tous nos biens</h1>
+        <h1>{{ 'properties.index.title'|trans }}</h1>
+        {# <div class="dropdown pull-left">
+            <strong>Trier par:</strong>
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="true">
+                <span>défault</span>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li>{{ knp_pagination_sortable(properties, 'nom', 'name') }}</li>
+                <li>{{ knp_pagination_sortable(properties, 'prix', 'price') }}</li>
+            </ul>
+        </div> #}
         <div class="row">
                 {% for property in properties %}
                         {% include 'property/_property.html.twig' %}

@@ -1,9 +1,10 @@
 {{ form_start(form) }}
-    {{ form_row(form.username, {'label': 'Nom d\'utilisateur', 'attr': {'placeholder': 'Nom d\'utilisateur'}}) }}
-    {{ form_row(form.email, {'label': 'Email', 'attr': {'placeholder': 'Email'}}) }}
-    {{ form_row(form.password, {'label': 'Mot de passe', 'attr': {'placeholder': 'Entrez votre mot de passe'}}) }}
-    {{ form_row(form.confirm_password, {'label': 'Vérification', 'attr': {'placeholder': 'Retaper votre mot de passe'}}) }}
+    {{ form_row(form.username, {'label': 'form.registration.username.label'|trans, 'attr': {'placeholder': 'form.registration.username.placeholder'|trans}}) }}
+    {{ form_row(form.email, {'label': 'form.registration.email.label'|trans, 'attr': {'placeholder': 'form.registration.email.placeholder'|trans}}) }}
+    {{ form_row(form.password, {'label': 'form.registration.password.label'|trans, 'attr': {'placeholder': 'form.registration.password.placeholder'|trans }}) }}
+    {{ form_row(form.confirm_password, {'label': 'form.registration.repeatpassword.label'|trans, 'attr': {'placeholder': 'form.registration.repeatpassword.placeholder'|trans}}) }}
 
-    <button type="submit" class="btn btn-primary">{{ button|default('Register') }}</button>
+    {# <button type="submit" class="btn btn-primary">{{ button|default('Register') }}</button> #}
+    <button type="submit" class="btn btn-primary">{{ 'form.registration.button'|trans }}</button>
 {{ form_end(form) }}
 

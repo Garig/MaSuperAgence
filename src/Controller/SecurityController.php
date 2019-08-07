@@ -19,6 +19,8 @@ use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 // use Swiftmailer\Swiftmailer\lib\classes\Swift\Plugins\Loggers\ArrayLogger;
+use Symfony\Component\Translation\TranslatorInterface;
+
 
 class SecurityController extends AbstractController
 {
@@ -51,7 +53,9 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route( "/connexion", name="connexion")
+     * @Route( "/{_locale}/connexion", name="connexion")
+     * requirements:
+     *      _locale: fr|en
      */
     public function login(AuthenticationUtils $authenticationUtils)
     {
@@ -64,9 +68,11 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route( "/inscription", name="inscription")
+     * @Route( "/{_locale}/register", name="inscription")
+     * requirements:
+     *      _locale: fr|en
      */
-    public function register(AuthenticationUtils $authenticationUtils, Request $request)
+    public function register(AuthenticationUtils $authenticationUtils, TranslatorInterface $translator, Request $request)
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -77,7 +83,7 @@ class SecurityController extends AbstractController
             $user->setPassword($this->encoder->encodePassword($user, $user->getPassword()));
             $this->em->persist($user);
             $this->em->flush();
-            $this->addFlash('success', 'Inscription réussie ! Connectez-vous');
+            $this->addFlash('success', $translator->trans('register.message.success'));
 
             return $this->redirectToRoute('connexion');
         }
@@ -91,12 +97,16 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route( "/deconnexion", name="deconnexion")
+     * @Route( "/{_locale}/deconnexion", name="deconnexion")
+     * requirements:
+     *     _locale: fr|en
      */
     public function logout() {}
 
         /**
-     * @Route("/forgotten_password", name="app_forgotten_password")
+     * @Route("/{_locale}/forgotten_password", name="app_forgotten_password")
+     * requirements:
+     *      _locale: fr|en
      */
     public function forgottenPassword( Request $request, TokenGeneratorInterface $tokenGenerator, MotPasseNotification $notification): Response
     {
@@ -157,7 +167,9 @@ class SecurityController extends AbstractController
     }
 
         /**
-     * @Route("/reset_password/{token}", name="app_reset_password")
+     * @Route("/{_locale}/reset_password/{token}", name="app_reset_password")
+     * requirements:
+     *      _locale: fr|en
      */
     public function resetPassword( AuthenticationUtils $authenticationUtils, Request $request, string $token, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -209,7 +221,9 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/profile/edit_password", name="edit_password")
+     * @Route("/{_locale}/profile/edit_password", name="edit_password")
+     * requirements:
+     *     _locale: fr|en
      */
     public function editPassword(AuthenticationUtils $authenticationUtils, Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -257,7 +271,9 @@ class SecurityController extends AbstractController
     }
 
         /**
-     * @Route("/profile/edit_infos", name="edit_infos")
+     * @Route("/{_locale}/profile/edit_infos", name="edit_infos")
+     * requirements:
+     *     _locale: fr|en
      */
 
     public function editInfos(AuthenticationUtils $authenticationUtils, Request $request, UserPasswordEncoderInterface $passwordEncoder, UserRepository $repository)
@@ -338,8 +354,10 @@ class SecurityController extends AbstractController
         ]);
     }
 
-            /**
-     * @Route("/profile/delete_profile-{id}", name="delete_profile", methods="DELETE")
+    /**
+     * @Route("/{_locale}/profile/delete_profile-{id}", name="delete_profile", methods="DELETE")
+     * requirements:
+     *     _locale: fr|en
      */
     public function deleteProfile(User $user, Request $request, TokenStorageInterface $tokenStorage, Session $session): response
     {

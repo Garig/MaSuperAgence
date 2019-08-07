@@ -10,6 +10,11 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+// use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+// use Symfony\Component\HttpKernel\Event\RequestEvent;
+// use Symfony\Component\HttpKernel\KernelEvents;
 
 class HomeController extends AbstractController
 {
@@ -17,7 +22,9 @@ class HomeController extends AbstractController
     //la tu remarquera on a pas declaré le $repository dans __construct et ça marche quand meme sinon on aurait mis
     //$properties = $this->repository->findBy() et on aurait pas eu a typehinté la méthode index()
     /**
-     * @Route("/", name="home")
+     * @Route("/{_locale}/", name="home")
+     * requirements:
+     *       _locale: fr|en
      */
     public function index(PropertyRepository $repository): Response
     {
@@ -27,6 +34,47 @@ class HomeController extends AbstractController
         return $this->render('pages/home.html.twig', [
             'properties' => $properties
         ]);
+    }
+
+    /**
+     * @Route("/", name="redirection")
+     */
+    public function redirection(): Response
+    {
+        return $this->redirectToRoute('home');
+    }
+
+    /**
+     * @Route("/fr/", name="languageFr")
+     */
+    public function languageFr(): Response
+    {
+        $request->setLocale('fr');
+    }
+
+    /**
+     * @Route("/en/", name="languageEn")
+     */
+    public function languageEn(Request $request): Response
+    {
+        // $request->setLocale('en');
+        // echo $request->getLocale();
+        // die();
+
+        // echo $request->getLocale();
+        // $request->setLocale('fr');
+        // echo $request->getLocale();
+        // $attributs = $request->attributes;
+        // // var_dump($attributs);
+        // var_dump($attributs->getLocale());
+        // die();
+
+        // $request->setLocale('en');
+            // $this->get('request')->attributes->set('_locale', 'en');
+            // $request->getSession()->set('_locale', 'en');
+        // $request->attributes->get('_route');
+        $request->setLocale('en');
+
     }
 
     /**
@@ -90,4 +138,25 @@ class HomeController extends AbstractController
             'likes'   => $likeRepo->count(['property' => $property])
         ], 200);
     }
+
+    /**
+     * @Route("/{_locale}", name="language")
+     * requirements:
+     *     _locale: fr|en
+    */
+    // public function language(SessionInterface $session, Request $request, $langue = null)
+	// {
+	    
+    //     // $locale = $request->getLocale();
+
+    //     // var_dump($locale);die();        
+    //     if($langue != null)
+	//     {
+    //         // On enregistre la langue en session
+	//         $session->set('_locale', $langue);
+	//     }
+ 
+	//     // on tente de rediriger vers la page d'origine
+    //     return $this->redirectToRoute('home');
+    // }
 }

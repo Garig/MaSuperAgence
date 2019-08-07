@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% trans_default_domain "messages" %}
 
 {% block title property.title %}
 
@@ -47,24 +48,26 @@
             </div>
             <div class="col-md-4">
                 <h1>{{property.title}}</h1>
-                <h2>{{property.rooms}} pièces - {{property.surface}} m<sup>2</sup></h2>
+                <h2>{{property.rooms}} {{ 'show.jumbotron.rooms'|trans }} - {{property.surface}} m<sup>2</sup></h2>
                 <h2>{{property.city}} ({{property.postalCode}})</h2>
                 <div class="text-primary" style="font-size:3rem;font-weight:bold;">{{property.getFormattedPrice()}} €</div>       
-                <a href="#" id="contactButton" class="btn btn-primary"{% if form.vars.submitted %} style="display:none" {% endif %}>Contacter l'agence</a>
+                <a href="#" id="contactButton" class="btn btn-primary"{% if form.vars.submitted %} style="display:none" {% endif %}>{{ 'show.jumbotron.contact'|trans }}</a>
                 <div id="contactForm" class="mt-4"{% if not form.vars.submitted %} style="display:none" {% endif %} >
                 {{ form_start(form) }}
                 <div class="row">
-                    <div class="col">{{ form_row(form.firstname) }}</div>
-                    <div class="col">{{ form_row(form.lastname) }}</div>
+                    <div class="col">{{ form_row(form.firstname, {'label': 'show.contact.firstname'|trans}) }}</div>
+                    <div class="col">{{ form_row(form.lastname, {'label': 'show.contact.lastname'|trans}) }}</div>
                 </div>
                 <div class="row">
-                    <div class="col">{{ form_row(form.phone) }}</div>
-                    <div class="col">{{ form_row(form.email) }}</div>
+                    <div class="col">{{ form_row(form.phone, {'label': 'show.contact.phone'|trans}) }}</div>
+                    <div class="col">{{ form_row(form.email, {'label': 'show.contact.email'|trans}) }}</div>
                 </div>
-                {{ form_rest(form) }}
+                <div class="row">
+                    <div class="col">{{ form_row(form.message, {'label': 'show.contact.message'|trans}) }}</div>
+                </div>
                 <div class="g-recaptcha" data-sitekey="6LdkbZ0UAAAAAL48iOlThGAp9MUuzTiEZVqk8dKu"></div>
                 <div class="">
-                    <button class="btn btn-primary">Envoyer</button>
+                    <button class="btn btn-primary">{{ 'show.jumbotron.send'|trans }}</button>
                 </div>
                 {{ form_end(form) }}
                 </div>       
@@ -79,32 +82,32 @@
 
     <div class="row">
         <div class="col-md-8">
-            <h2>Caractéristiques</h2>
+            <h2>{{ 'show.characteristics.characteristics'|trans }}</h2>
             <table class="table table-striped">
                 <tr>
-                    <td>Surface habitable</td>
+                    <td>{{ 'show.characteristics.surface'|trans }}</td>
                     <td>{{property.surface}} m<sup>2</sup></td>
                 </tr>
                 <tr>
-                    <td>Pièces</td>
+                    <td>{{ 'show.characteristics.rooms'|trans }}</td>
                     <td>{{property.rooms}}</td>
                 </tr>
                 <tr>
-                    <td>Chambres</td>
+                    <td>{{ 'show.characteristics.bedrooms'|trans }}</td>
                     <td>{{property.bedrooms}}</td>
                 </tr>
                 <tr>
-                    <td>Etage</td>
+                    <td>{{ 'show.characteristics.floor'|trans }}</td>
                     <td>{{property.floor}}</td>
                 </tr>
                 <tr>
-                    <td>Chauffage</td>
+                    <td>{{ 'show.characteristics.heating'|trans }}</td>
                     <td>{{property.heatType}}</td>
                 </tr>
             </table>
         </div>
         <div class="col-md-4">
-            <h2>Spécificités</h2>
+            <h2>{{ 'show.specificities'|trans }}</h2>
             <ul class="list-group">
             {% for option in property.options %}
                 <li class="list-group-item">{{ option.name }}</li>

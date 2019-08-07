@@ -32,7 +32,7 @@ class ContactType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Contact::class,
-            'translation_domain' => 'forms'
+            'translation_domain' => 'messages'
         ]);
     }
 }

@@ -29,6 +29,13 @@
     </form>
     {% endif %}
 
+    <h1 class="mt-4">Mes biens favoris</h1>
+    <div class="row">
+                {% for property in properties %}
+                        {% include 'property/_property_likeByUser.html.twig' %}
+                {% endfor %}
+    </div>
+
     <div id="root"></div>
 
 </div>

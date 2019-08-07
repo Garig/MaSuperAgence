@@ -1,0 +1,92 @@
+title:
+    home: Agency - Property center | Home
+    index: All our properties | Agency
+    login: Connexion | Agency
+    registration: Registration | Agency
+nav:
+    item:
+        brand: Agency
+        buy: Buy
+        signin: Sign in
+        signup: Sign up
+        logout: Log out
+        account: My account
+        manageproperties: Manage properties
+        manageoptions: Manage options
+        manageusers: Manage users
+home:
+    jumbotron:
+        title: Property center
+        sentence: Welcome to the website of our real estate agency. We offer many properties for sale in France.
+        button: Discover our properties
+properties:
+    home:
+        title: The last properties
+    index:
+        title: All the properties
+    like: I like
+show:
+    jumbotron:
+        rooms: rooms
+        contact: Contact the agency
+        send: Send
+    contact:
+        firstname: Firstname
+        lastname: Lastname
+        email: Email
+        phone: Phone
+        message: Message
+    characteristics:
+        characteristics: Characteristics
+        surface: Living surface
+        rooms: Rooms
+        bedrooms: Bedrooms
+        floor: Floor
+        heating: Heating
+    specificities: Specificities
+form:
+    search:
+        minsurface: Minimum area
+        maxprice: Maximum budget
+        minpiece: Minimum rooms
+        address: Address or City
+        distance: Distance
+        search: Search
+    login:
+        username:
+            label: Email or username
+            placeholder: Email or username
+        password:
+            label: Password
+            placeholder: Password
+        forgottenpassword: Forgotten password?
+        button : Connexion
+    registration:
+        title: Registration
+        username:
+            label: Username
+            placeholder: Username
+        email:
+            label: Email
+            placeholder: Email
+        password:
+            label: Password
+            placeholder: Type your password
+        repeatpassword:
+            label: Verification
+            placeholder: Retype your password
+        button : Register
+email:
+    message:
+        success: Your email has been sent. We will respond as soon as possible
+register:
+    message:
+        success: Successful registration ! Login
+page:
+    forgottenpassword:
+        title: Forgotten password
+        intro:
+            Lost your password?
+            Complete the form, an email will be sent to you.
+            It will contain the procedure to follow to recover your password.
+        button: Send the email

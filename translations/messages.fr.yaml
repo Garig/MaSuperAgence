@@ -1,0 +1,93 @@
+title:
+    home: Agency - Agence immobilière | Accueil
+    index: Tous nos biens | Agency
+    login: Se connecter | Agency
+    registration: S'inscrire | Agency
+nav:
+    item:
+        brand: Agency
+        buy: Acheter
+        signin: Se connecter
+        signup: S'inscrire
+        logout: Se déconnecter
+        account: Mon compte
+        manageproperties: Gérer les biens
+        manageoptions: Gérer les options
+        manageusers: Gérer les users
+home:
+    jumbotron:
+        title: Agence immobilière
+        sentence: Bienvenue sur le site de notre agence immobilière. Nous vous proposons de nombreux biens à vendre en France.
+        button: Découvrez nos biens
+properties:
+    home:
+        title: Les derniers biens
+    index:
+        title: Tous nos biens
+    like: J'aime
+show:
+    jumbotron:
+        rooms: pièces
+        contact: Contacter l'agence
+        send: Envoyer
+    contact:
+        firstname: Prénom
+        lastname: Nom
+        email: Email
+        phone: Téléphone
+        message: Message
+    characteristics:
+        characteristics: Caractéristiques
+        surface: Surface habitable
+        rooms: Pièces
+        bedrooms: Chambres
+        floor: Etage
+        heating: Chauffage
+    specificities: Spécificités
+form:
+    search:
+        minsurface: Surface minimale
+        maxprice: Budget maximum
+        minpiece: Pièces minimum
+        address: Adresse ou Ville
+        distance: Distance
+        search: Rechercher
+    login:
+        username:
+            label: Email ou Nom d'utilisateur
+            placeholder: Email ou Nom d'utilisateur
+        password:
+            label: Mot de passe
+            placeholder: Mot de passe
+        forgottenpassword: Mot de passe oublié ?
+        button: Se connecter
+    registration:
+        title: S'inscrire
+        username:
+            label: Nom d'utilisateur
+            placeholder: Nom d'utilisateur
+        email:
+            label: Email
+            placeholder: Email
+        password:
+            label: Mot de passe
+            placeholder: Entrez votre mot de passe
+        repeatpassword:
+            label: Vérification
+            placeholder: Retapez votre mot de passe
+        button : S'inscrire
+email:
+    message:
+        success: Votre email a bien été envoyé. Nous vous répondrons dans les plus brefs délais
+register:
+    message:
+        success: Inscription réussie ! Connectez-vous
+page:
+    forgottenpassword: 
+        title: Mot de passe oublié
+        intro:
+            Vous avez perdu votre mot de passe ?
+            Compléter le formulaire, un email vous sera envoyé.
+            Il contiendra la procédure à suivre pour récupérer votre mot de passe.
+        button: Envoyer l'email
+        

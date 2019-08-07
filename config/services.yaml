@@ -32,3 +32,7 @@ services:
         tags:
         - { name: doctrine_event_subscriber }
 
+    App\Listener\LocaleSubscriber:
+        arguments: []
+
+
