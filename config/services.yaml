@@ -32,13 +32,10 @@ services:
         tags:
         - { name: doctrine_event_subscriber }
 
-<<<<<<< HEAD
     App\Listener\LocaleSubscriber:
         arguments: []
 
-=======
     App\Listener\LoginListener:
         tags:
         - { name: kernel.event_listener, event: security.authentication.success }
->>>>>>> 1fc367255b930360fd583380141359b906bfaeda
 
